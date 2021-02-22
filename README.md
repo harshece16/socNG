@@ -516,7 +516,10 @@ let sub = (x = 0, y = 0) => x - y;
 
 	fetch('https://jsonplaceholder.typicode.com/users')
 		.then( res => res.json())
-		.then(data => console.log(data));
+		.then(data => console.log(data))
+		.catch(err => console.log(err));
+
+
 =====
 npm i axios
 	axios.get(url, callback);
@@ -527,7 +530,190 @@ npm i axios
 		firstTask().then( data => secondTask(data) {
 
 			}. then(thirdTask(data) {
-				
+
 				}))
 	}
-	
+===================
+
+6) class
+
+class Person {
+	constructor(name = "", age = 0) {
+		this.name = name;
+		this.age = age;
+	}
+
+	getName() {
+		return this.name;
+	}
+}
+
+
+let p = new Person("Tim",13);
+let p1  = new Person();
+let p2 = new Person("Rajesh");
+
+this code is converted to function constructor and using prototype to add methods
+
+class Product{
+	constuctor(name,price) {
+		...
+	}
+}
+
+class Mobile extends Product {
+	constructor(name,price,connectivity) {
+		super(name,price);
+		this.connectivity = connectivity;
+    }
+}
+==================================================
+
+7) ES 6 Module system
+
+	Pure vanilla module system:
+	// IIFE
+	(function Product() {
+		var name; // private to Product
+	 	function getName() {
+	 		// name is visbile
+		}
+
+		function getInfo() {
+			// name is visbile
+		}
+	})();
+
+
+	(function Payment() {
+		var mode; // private to Payment
+		function checkout() {
+			// mode
+		}
+	})();
+
+	=========
+
+	CommonJS module system, AMD, ES 6 module system
+	========================
+	ES 6 module system; each file is a module
+
+	lib.js
+
+	export function add() {}
+
+	export function sub() {}
+
+	export default function multiply() { }
+	function util() {}
+
+
+	other.js
+
+	import multiply, {add,sub} from './lib';
+
+	add();
+	sub();
+	multiply();
+========================================================
+8) Generators
+
+function* task() {
+	console.log("one");
+	yield 100;
+	console.log("two");
+	console.log("three");
+	yield "test";
+	console.log("four");
+	yield "completed!!!"
+}
+
+let iter = task();
+
+iter.next();
+
+iter.next();
+
+iter.next();
+===============================================
+9) Destructuring array and objects
+
+var colors = ["red","green","blue","pink"];
+
+old way:
+var r = colors[0];
+var g = colors [1];
+
+ES6 way:
+
+var [r,g,...others] = colors;
+------------
+
+ var product = { "id": 1, "name": "iPhone", "price": 124447.44, "category": "mobile" };
+
+ var {name, price} = product;
+----------------
+10) cloning
+
+var data = [67,2,522,41];
+
+var ref = data;
+
+ref[0] = 88;
+---------------
+clone:
+var ref = [...data];
+ref[0] = 88;
+
+var product = { "id": 1, "name": "iPhone", "price": 124447.44, "category": "mobile" };
+var ref = product; // reference
+var p = {...product} // p is a clone and not direct refernce to product
+============
+
+self read: Proxy, Reflection
+=======================================================================
+
+Node.JS
+	==> Environment with V8 JS engine + libuv C++ apis
+	==> mediator between JS code ==> C++
+
+	APIs
+	environment to build web appilication
+	-------------
+
+	common things need for building web application:
+	1) transpile [ ES6 or ESNext ==> ES5]
+	2) minify and uglify code
+	3) run tests [ unit testing or E2E]
+	4) bundle
+		n no of css files
+		n no of js files ==> bundle.js
+
+		<script src="a.js"></script>
+		<script src="b.js"></script>
+		<script src="c.js"></script>
+		<script src="d.js"></script>
+============================================================
+
+package.json ===> maven
+ ==> a file to have info about prod-dependendenies and development devlopment-dep
+ track of modules used in project
+ ==> script==> run, compile, bundle, test, lint
+
+ NPM ==> Node Package Manager
+ 	manage dependencies
+ 
+ // testing dependencies
+ "devDependencies": {
+    "chai": "^4.3.0",
+    "mocha": "^8.3.0",
+    "request": "^2.88.2"
+  }
+
+  "chai": "4.3.0"; ==> exact version
+
+  "chai": "~4.3.0"; ==> major version has to be 4; minor version anything
+
+   "chai": "^4.3.0"; ==> any version equal or greater than 4.3
+
+ npm i
