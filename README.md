@@ -306,5 +306,53 @@ Lambda experssion ==> JRE ==> can treat this lamda as function [ HOF] or it can 
 as short cut for Objects of anonymous class
 =======================================================
 
+HOF ==> function return a function
+// pure function
+function greeting(msg, name) {
+	return msg + " " + name;
+}
+
+greeting("Good morning", "Smith");
+greeting("Good morning", "Sam");
+greeting("Good morning", "Zaheer");
+greeting("Good morning", "Sita");
+===================================================
+
+HOF
+function greeting(msg) {
+	return function(name) {
+		return msg + " " + name;
+	}
+}
+
+var morningGreet = greeting("Good morning"); 
+// closure ==> returned function can
+// access members of outer function
+// morningGreet can access "msg" which is a part of closure
+
+console.log(morningGreet("Geetha"));
+console.log(morningGreet("Rita"));
+
+var greet = greeting("Good Day");
+console.log(greet("Geetha"));
+==================================================
+
+
+getProduct(10); 
+	==> Make a REST call 
+	==> hit the db and return the value
+
+.....
+
+getProduct(10);
+	==> i expect data to come from cache
+	==> don't make REST api calls
+==================================================
+
+
+
+
+
+
 
 
