@@ -352,7 +352,182 @@ getProduct(10);
 
 
 
+memGetProduct(getProduct);
+// memGetProduct has different closure [ Cache is differnet from memFib]
+
+memGetProduct(10);
+
+memGetProduct(10);
+======================================
+HOF, closure
+Memoize Design Pattern ==> implementing cache
+===================================================
+
+Module pattern; Memoize; Observable; Factory; Singleton
+========================================================
+JS ==> Event loop; callback; stack
+
+first.js
+
+console.log("Hello");
+
+setInterval(function time() {
+	console.log("Time out");
+}, 100);
+
+console.log("Good Day !!!");
+
+$("#add").click(function clicked() {
+	console.log("You Clicked!!!");
+});
+
+console.log("Bye!!!");
+==========================================
+Event loop psuedocode:
+
+myFile.js
+
+var pendingTimers = [];
+var pendingOSTasks = [];
+var pendingOperations = [];  
+
+myFile.runContents();
+
+function shouldContinue() {
+	checks the arrays
+}
+
+while(shouldContinue()) {
+	 // check pendingTimer
+	 // check pendingTasks
+	 // check pending operations
+	 // check setImmediate
+	 // handle close events
+}
+=====================================================
+
+ES2015 ==> ES 6
+
+ES 6 or ESNext ===> TransCompiler ==> lower version [ ES 5]
+
+Transpiler ==> Babel; Tracuer
+
+Babel is a free and open-source JavaScript transcompiler that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript that can be run by older JavaScript engines.
+=====================================================
+
+ES 6 Features:
+
+1) block level scope [ let and const]
+
+var g = 100;
+
+function doTask() {
+	var a = 10;
+	if( g > a) {
+		let b = 20;
+		const PI = 3.14159;
+		c  = 50;
+	}
+
+	console.log(g, a, b, c); // b, PI is not visible
+}
+
+doTask()
+console.log(g, a, b, c);  // a, b, PI is not visible
+==========================================================
+
+2) Default value and arrow operators
+Prior to ES 6
+function add(x, y) {
+	var result = 0;
+	x = x || 0;
+	y = y || 0;
+	result = x + y;
+	return result;
+}
+
+add(4,5); // 9
+add(4); // x is 4 and y is 0
+add(); // x and y are 0
+
+---
+ES 6+
+function add(x = 0, y = 0) {
+	var result = 0;
+ 	result = x + y;
+ 	return result;
+}
+add(4,5); // 9
+add(4); // x is 4 and y is 0
+add(); // x and y are 0
+----------
+
+let sub = (x = 0, y = 0) => x - y;
+-------------------------------------------------
+
+3) New String literal 
+	`Hello` 
+
+	ES 5 had two ways to declare a string
+	'test'
+	"world"
+
+	------------
+
+	var name = "Roger";
+
+	var elem = `
+		<div>
+			Welcome ${name},
+			Angular Training
+			SocGen
+		</div>
+	`;
+
+	----------
+	Old Way:
+	elem = "<div> Welcome" + name + "<br/> Angular Training <br />";
+--------------------------------
+4) Promise API
+  	make a promise call ==> that can resolve or reject
+
+  	Synchronous:
+  	function doTask() {
+
+  	}
+
+  	let res = doTask();
+
+  	console.log("Got result ", res); // blocked
+  	--------
+
+  	ASynchronous which is promise based:
+  	function doTask() {
+
+  	}
+
+  	doTask().then(
+  		(data) => console.log(data), /* resolve code */
+  		(err) => console.log(err) /* reject code */
+  	);
+
+  	console.log("Got result "); // not blocked
 
 
+	fetch('https://jsonplaceholder.typicode.com/users')
+		.then( res => res.json())
+		.then(data => console.log(data));
+=====
+npm i axios
+	axios.get(url, callback);
+=============================================
+5) Async and await to simplify Promise based API and avoid lots of callback
 
+	function someTask() {
+		firstTask().then( data => secondTask(data) {
 
+			}. then(thirdTask(data) {
+				
+				}))
+	}
+	
